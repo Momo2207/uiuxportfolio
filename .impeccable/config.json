@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "low-contrast",
+        "value": "2.0:1 (need 4.5:1) — text #a8bdb2 on #ffffff",
+        "createdAt": "2026-08-18T05:28:08.473Z",
+        "reason": "Claude verified: --muted-on-ink #A8BDB2 is only ever used inside .on-ink (ground #14272B) = 7.81:1. Static parser cannot resolve the ancestor and assumes white. Browser-composited audit across 5 pages x 2 widths reports 0 contrast failures; documented in DESIGN.md."
+      }
+    ]
+  }
+}
