@@ -156,15 +156,29 @@ Never ship, on this brand:
 
 `node .claude/skills/impeccable/scripts/detector/detect-antipatterns.mjs *.html assets/styles.css`
 
-Known standing false positives, each verified in a real browser:
+Known standing false positives, each verified in a real browser and suppressed
+with a **value-scoped** ignore in `.impeccable/config.json` (no rule-wide or
+file-wide suppressions — a new component producing a new value still fires):
 
-- **`cramped-padding`** — the analyser does not resolve `padding-block` with
-  `var()`/`clamp()`. Flagged elements measure 24–89.6px of real inset.
-- **`low-contrast`** — the analyser assumes a white ground for `.on-ink`
-  descendants. Composited measurement gives **0** failures.
-- **`tight-leading`** — display type only (≥24px). Zero multi-line body text
-  below 1.3.
-- **`flat-type-hierarchy`** — the analyser cannot resolve `clamp()`, so it sees
-  only the three small steps and none of the display range up to 86px.
+- **`cramped-padding`** (8 values) — the analyser does not resolve
+  `padding-block` with `var()`/`clamp()`. Measured: `.section.ruled` 89.6px,
+  `.ledger__row` 25.6px, `.commitment` 24px, `.value` 24px, `.chain__step`
+  18.4px, `.index-item` 16px. `.ledger` is a 0-padding wrapper whose child
+  `.ledger__row` supplies 25.6px, so its text is not flush either.
+- **`low-contrast`** (3 values) — the analyser assumes a white ground for
+  tokens used only on dark surfaces. `--muted-on-ink` #A8BDB2 on ink = 7.81:1,
+  `--muted-on-teal` #D8E4DE on teal = 5.74:1, `--lemon` #E9E77A on ink =
+  11.94:1 and on teal = 5.78:1. Composited measurement gives **0** failures.
+- **`tight-leading`** (3 values) — display type only (≥24px), intentional per
+  the type section above. Zero multi-line body text below 1.3.
+- **`flat-type-hierarchy`** — not suppressed; the analyser cannot resolve
+  `clamp()`, so it sees only the three small steps (12/15/18.8) and none of the
+  display range up to 86px.
 - **`cream-palette`** (if it returns) — Papier `#F5F3EE` is a pinned brand
   colour. The brief wins.
+
+**Guard.** The suppressions are keyed to exact value strings, so they hide the
+verified cases only. Re-verify contrast and leading against a real browser
+rather than the static analyser after any token change: composite the actual
+ancestor background, and check that no multi-line text under 24px falls below
+1.3 leading.

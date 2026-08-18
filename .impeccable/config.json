@@ -8,6 +8,84 @@
         "value": "2.0:1 (need 4.5:1) — text #a8bdb2 on #ffffff",
         "createdAt": "2026-08-18T05:28:08.473Z",
         "reason": "Claude verified: --muted-on-ink #A8BDB2 is only ever used inside .on-ink (ground #14272B) = 7.81:1. Static parser cannot resolve the ancestor and assumes white. Browser-composited audit across 5 pages x 2 widths reports 0 contrast failures; documented in DESIGN.md."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "<section> \"section\": children flush against border-top on top (no inset)",
+        "createdAt": "2026-08-18T05:33:21.429Z",
+        "reason": "Claude verified in browser: .section.ruled computes padding-block 89.6px. Parser cannot resolve padding-block with var()/clamp()."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "<div> \"index-item\": children flush against border-top on top (no inset)",
+        "createdAt": "2026-08-18T05:33:21.488Z",
+        "reason": "Claude verified in browser: .index-item computes padding-block 16px, meeting the rule own 12-16px bar. Parser cannot resolve padding-block with var()."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "<div> \"ledger__row\": children flush against border-bottom on bottom (no inset)",
+        "createdAt": "2026-08-18T05:33:21.540Z",
+        "reason": "Claude verified in browser: .ledger__row computes padding-block 25.6px. Parser cannot resolve padding-block with clamp()."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "<div> \"commitment\": children flush against border-top on top (no inset)",
+        "createdAt": "2026-08-18T05:33:21.602Z",
+        "reason": "Claude verified in browser: .commitment computes padding-block 24px. Parser cannot resolve padding-block with var()."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "<li> \"chain__step\": children flush against border-bottom on bottom (no inset)",
+        "createdAt": "2026-08-18T05:33:21.655Z",
+        "reason": "Claude verified in browser: .chain__step computes padding-block 18.4px. Parser cannot resolve padding-block with clamp()."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "<li> \"chain__step\": children flush against border-top/bottom on top/bottom (no inset)",
+        "createdAt": "2026-08-18T05:33:21.717Z",
+        "reason": "Claude verified in browser: .chain__step computes padding-block 18.4px. Parser cannot resolve padding-block with clamp()."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "<div> \"value\": children flush against border-top on top (no inset)",
+        "createdAt": "2026-08-18T05:33:21.776Z",
+        "reason": "Claude verified in browser: .value computes padding-block 24px. Parser cannot resolve padding-block with var()."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "<div> \"ledger\": children flush against border-top on top (no inset)",
+        "createdAt": "2026-08-18T05:33:21.841Z",
+        "reason": "Claude verified in browser: .ledger is a 0-padding wrapper, but its first child .ledger__row supplies 25.6px padding-top, so text sits 25.6px clear of the rule. Wrapper heuristic does not account for child inset."
+      },
+      {
+        "rule": "tight-leading",
+        "value": "line-height 1.21x (need >=1.3)",
+        "createdAt": "2026-08-18T05:33:21.902Z",
+        "reason": "Claude verified: display type only (>=24px), intentional editorial leading per DESIGN.md. Browser check across all 5 pages reports 0 multi-line non-display text below 1.3. Guard: scratchpad qa/lh.mjs."
+      },
+      {
+        "rule": "tight-leading",
+        "value": "line-height 1.00x (need >=1.3)",
+        "createdAt": "2026-08-18T05:33:21.964Z",
+        "reason": "Claude verified: display type only (>=24px), intentional editorial leading per DESIGN.md. Browser check reports 0 multi-line non-display text below 1.3."
+      },
+      {
+        "rule": "tight-leading",
+        "value": "line-height 0.90x (need >=1.3)",
+        "createdAt": "2026-08-18T05:33:22.025Z",
+        "reason": "Claude verified: display type only (>=24px), intentional editorial leading per DESIGN.md. Browser check reports 0 multi-line non-display text below 1.3."
+      },
+      {
+        "rule": "low-contrast",
+        "value": "1.3:1 (need 4.5:1) — text #e9e77a on #ffffff",
+        "createdAt": "2026-08-18T05:34:14.772Z",
+        "reason": "Claude verified: --lemon #E9E77A is only ever used as text inside .on-ink (#14272B = 11.94:1) and .on-teal (#2F5C5A = 5.78:1). Parser cannot resolve the ancestor and assumes white. Browser-composited audit: 0 contrast failures."
+      },
+      {
+        "rule": "low-contrast",
+        "value": "1.3:1 (need 4.5:1) — text #d8e4de on #ffffff",
+        "createdAt": "2026-08-18T05:34:14.827Z",
+        "reason": "Claude verified: --muted-on-teal #D8E4DE is only ever used inside .on-teal (#2F5C5A) = 5.74:1. Parser cannot resolve the ancestor and assumes white. Browser-composited audit: 0 contrast failures."
       }
     ]
   }
