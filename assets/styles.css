@@ -507,6 +507,60 @@ a.ledger__row:hover .ledger__go { text-decoration: underline; text-underline-off
 .footer__meta { font-size: var(--t-small); color: var(--text-muted); text-align: right; }
 .footer__meta strong { display: block; color: var(--text); font-weight: 500; font-family: var(--font-display); font-size: var(--t-body); }
 
+/* ---------- Imagery ----------
+ * Photography sits in the same world as the type: hairline rules, no boxes,
+ * no radius, no shadow. Every figure reserves its space from the intrinsic
+ * width/height attributes plus aspect-ratio, so images never shift layout.
+ * See tools/build-images.mjs and assets/img/README.md.
+ */
+.figure { display: grid; gap: var(--s-3); margin: 0; --ratio: var(--ratio-src, 3 / 2); }
+.figure img,
+.figure picture { display: block; width: 100%; height: auto; }
+.figure__media {
+  position: relative;
+  overflow: hidden;
+  background: var(--ground-2);          /* holds the space before decode */
+  border-top: 1px solid var(--rule);
+}
+.figure__media img { aspect-ratio: var(--ratio, 3 / 2); object-fit: cover; }
+.figure figcaption {
+  font-size: var(--t-marker);
+  letter-spacing: .02em;
+  color: var(--text-muted);
+  max-width: 44ch;
+}
+.on-ink .figure__media, .on-teal .figure__media { border-top-color: var(--rule-on-ink); background: color-mix(in srgb, var(--ink) 60%, transparent); }
+.on-ink .figure figcaption { color: var(--muted-on-ink); }
+.on-teal .figure figcaption { color: var(--muted-on-teal); }
+
+/* Optional grade: settles arbitrary photography into the Parvalle palette.
+   Add .figure--toned only when a photo fights the ground; good photographs
+   should be able to run untreated. */
+.figure--toned .figure__media::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--teal);
+  mix-blend-mode: color;
+  opacity: .18;
+  pointer-events: none;
+}
+.figure--toned .figure__media img { filter: saturate(.9) contrast(1.02); }
+
+/* Full-bleed band: a visual breath between two dense text sections. */
+.band-image { --ratio: var(--ratio-src, 21 / 9); }
+.band-image .figure__media { border-top: 0; }
+.band-image .figure__media img { aspect-ratio: var(--ratio); }
+.band-image figcaption { width: min(100%, var(--container-wide)); margin-inline: auto; padding-inline: var(--gutter); margin-top: var(--s-3); }
+
+/* Side-by-side: image beside a block of copy. */
+.with-figure { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; }
+.with-figure .figure { --ratio: var(--ratio-src, 3 / 2); }
+
+/* Row of course worlds. Portrait crops, ruled, no captions competing with type. */
+.gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.75rem, 2vw, 1.25rem); margin-top: clamp(1.5rem, 4vw, 2.5rem); }
+.gallery .figure { --ratio: var(--ratio-src, 4 / 5); gap: var(--s-2); }
+.gallery:empty { display: none; }
+
 /* =============================================================
    Responsive — mobile is composed, not compressed
    ============================================================= */
@@ -517,6 +571,7 @@ a.ledger__row:hover .ledger__go { text-decoration: underline; text-underline-off
 
 @media (max-width: 900px) {
   .nav { display: none; }
+  .with-figure { grid-template-columns: minmax(0, 1fr); }
   .menu { display: block; }
   .spread { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
   .spread__aside { position: static; }
@@ -536,6 +591,8 @@ a.ledger__row:hover .ledger__go { text-decoration: underline; text-underline-off
 
 @media (max-width: 620px) {
   :root { --measure: 60ch; }
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .band-image { --ratio: 16 / 9; }
   .commitments { grid-template-columns: minmax(0, 1fr); }
   .index-grid, .values, .persona__cols { grid-template-columns: minmax(0, 1fr); }
   .ledger__row { grid-template-columns: minmax(0, 1fr); }

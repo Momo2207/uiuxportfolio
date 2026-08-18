@@ -1,2 +1,5 @@
 node_modules/
 .impeccable/hook.cache.json
+
+# Original photography. Large, never served — only the built derivatives ship.
+assets/img/src/
