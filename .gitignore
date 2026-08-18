@@ -3,3 +3,7 @@ node_modules/
 
 # Original photography. Large, never served — only the built derivatives ship.
 assets/img/src/
+
+# Reference captures (screenshots + report.json), regenerated on demand
+reference/*/
+!reference/BRIEF.md
