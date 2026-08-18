@@ -22,6 +22,18 @@ The policy is applied when the container starts, so a **new session** is
 needed after the change. Docs: https://code.claude.com/docs/en/claude-code-on-the-web
 
 Retried 2026-08-18 07:08 and 07:09 UTC at the user's request; still denied.
+
+A **fresh session in a fresh container** was spawned 07:28 UTC in the same
+`Standard` environment (`env_01PLpPisaZjNg9HzVdNsymqb`) purely to test whether a
+new container would pick up a changed policy. It reported:
+
+> `flyhyer.com blocked by egress policy (403 CONNECT)`
+> needs_action: `allow www.flyhyer.com in egress policy or confirm alternate host`
+
+That rules out the stale-container theory: restarting does **not** help, because
+the environment's own policy still denies the host. Only changing the
+environment's network access setting will. There is exactly one environment on
+this account, so there is no alternative environment to fall back to.
 Note the gateway answers 403 to CONNECT both for a host that is off the
 allowlist and for one that is simply unreachable — its own detail reads
 "policy denial or upstream failure" — so a refusal alone does not prove which.
