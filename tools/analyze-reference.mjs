@@ -196,8 +196,65 @@ const COLLECT_MOTION = `(() => {
 
 /* ---------- run ---------- */
 
+/** Turn a navigation failure into something actionable instead of a stack trace. */
+async function diagnose(err, target) {
+  const m = String(err && err.message || err);
+  const tunnel = /ERR_TUNNEL_CONNECTION_FAILED|ERR_PROXY_CONNECTION_FAILED|EGRESS_BLOCKED|403/.test(m);
+
+  // A tunnel failure is ambiguous: the proxy resolves DNS, so an unknown host and
+  // a denied host look identical from here. Ask the proxy which it was.
+  let proxyVerdict = null;
+  if (tunnel && process.env.HTTPS_PROXY) {
+    try {
+      const host = new URL(target).hostname;
+      const res = await fetch(process.env.HTTPS_PROXY + "/__agentproxy/status", { signal: AbortSignal.timeout(8000) });
+      const status = await res.json();
+      const hit = (status.recentRelayFailures || []).find((f) => (f.host || "").startsWith(host));
+      if (hit) proxyVerdict = hit;
+    } catch { /* proxy status unavailable; fall through to the generic message */ }
+  }
+
+  const blocked = tunnel && (!proxyVerdict || /policy|denial|403/i.test(proxyVerdict.detail || "") || proxyVerdict.kind === "connect_rejected");
+  const dns = /ERR_NAME_NOT_RESOLVED/.test(m) || (tunnel && proxyVerdict && /dns|resolve|not known/i.test(proxyVerdict.detail || ""));
+  const refused = /ERR_CONNECTION_REFUSED/.test(m);
+  const timeout = /Timeout|ERR_TIMED_OUT/i.test(m);
+  console.error("\nCould not load " + target);
+  if (blocked) {
+    console.error("\n  The egress proxy refused the tunnel (403 to CONNECT).");
+    if (proxyVerdict) console.error("  Proxy said: " + proxyVerdict.kind + " — " + proxyVerdict.detail);
+    console.error("\n  The gateway returns the same 403 whether the host is off the allowlist or");
+    console.error("  simply unreachable, so this alone does not tell you which. Check both:");
+    console.error("\n    1. Spelling — does the URL load in a normal browser?");
+    console.error("    2. Allowlist — add the domain in the environment's network access settings,");
+    console.error("       then start a NEW session; the policy is applied at container start.");
+    console.error("\n  Then verify:  curl -sL -o /dev/null -w '%{http_code}\\n' " + target);
+    console.error("                200 = reachable, 000 = still refused");
+  } else if (dns) {
+    console.error("\n  DNS did not resolve. Check the hostname.");
+  } else if (refused) {
+    console.error("\n  Connection refused. If this is a local URL, is the server running?");
+  } else if (timeout) {
+    console.error("\n  Timed out. The site may be slow, or blocking automated clients.");
+  } else {
+    console.error("\n  " + m.split("\n")[0]);
+  }
+  console.error("");
+}
+
 const browser = await chromium.launch();
 const report = { url, capturedAt: null, breakpoints: {}, deep: {} };
+
+// Fail fast and legibly if the very first navigation cannot happen at all.
+try {
+  const probe = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  const pp = await probe.newPage();
+  await pp.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 });
+  await probe.close();
+} catch (err) {
+  await browser.close();
+  await diagnose(err, url);
+  process.exit(2);
+}
 
 for (const w of BREAKPOINTS) {
   const ctx = await browser.newContext({ viewport: { width: w, height: w < 700 ? 844 : 900 } });

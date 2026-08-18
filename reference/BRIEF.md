@@ -18,8 +18,14 @@ not routed around. Nothing was analysed from second-hand descriptions.
 
 **Unblock:** add `flyhyer.com` (and `www.flyhyer.com`) to the environment's
 network egress allowlist — Claude Code → environment settings → network access.
-The policy is applied when the container starts, so a **new session** is likely
+The policy is applied when the container starts, so a **new session** is
 needed after the change. Docs: https://code.claude.com/docs/en/claude-code-on-the-web
+
+Retried 2026-08-18 07:08 and 07:09 UTC at the user's request; still denied.
+Note the gateway answers 403 to CONNECT both for a host that is off the
+allowlist and for one that is simply unreachable — its own detail reads
+"policy denial or upstream failure" — so a refusal alone does not prove which.
+Confirm the URL loads in a normal browser before assuming it is the allowlist.
 
 Verify with: `curl -sL -o /dev/null -w "%{http_code}\n" https://www.flyhyer.com/`
 (200 = unblocked, 000 = still denied).
