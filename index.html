@@ -4,117 +4,238 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Parvalle · Mehr Leidenschaft. Weniger Management.</title>
-<meta name="description" content="Parvalle entwickelt digitale Lösungen für unabhängige Kursanbieter.">
+<meta name="description" content="Parvalle entwickelt digitale Lösungen für unabhängige Kursanbieter. Kurse direkt über die eigene Website anbieten, buchen und verwalten.">
+<meta name="theme-color" content="#F5F3EE">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Parvalle">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Parvalle · Mehr Leidenschaft. Weniger Management.">
+<meta property="og:description" content="Parvalle entwickelt digitale Lösungen für unabhängige Kursanbieter.">
+<meta property="og:image" content="assets/og-parvalle.png">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
-<div class="nav-wrap"><div class="container"><nav class="nav" aria-label="Hauptnavigation"><a class="brand" href="index.html">PARVALLE</a><div class="nav__links"><a href="index.html" aria-current="page">Start</a><a href="produkt.html">Produkt</a><a href="fuer-wen.html">Für wen</a><a href="free-pro.html">Free & Pro</a><a href="ueber-parvalle.html">Über Parvalle</a></div></nav></div></div>
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
 
-<main>
-  <div class="container">
-    <header class="hero">
+<header class="masthead">
+  <div class="container container--wide masthead__inner">
+    <a class="wordmark" href="index.html">Parvalle</a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="index.html" aria-current="page">Start</a>
+      <a href="produkt.html">Produkt</a>
+      <a href="fuer-wen.html">Für wen</a>
+      <a href="free-pro.html">Free &amp; Pro</a>
+      <a href="ueber-parvalle.html">Über Parvalle</a>
+    </nav>
+    <details class="menu" data-menu>
+      <summary aria-label="Menü öffnen">
+        <span class="menu__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        Menü
+      </summary>
+      <nav class="menu__panel" aria-label="Hauptnavigation mobil">
+        <a href="index.html" aria-current="page">Start</a>
+        <a href="produkt.html">Produkt</a>
+        <a href="fuer-wen.html">Für wen</a>
+        <a href="free-pro.html">Free &amp; Pro</a>
+        <a href="ueber-parvalle.html">Über Parvalle</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <div class="container container--wide">
+    <section class="hero">
       <div class="hero__grid">
-        <div>
-          <p class="eyebrow" data-reveal>PARVALLE · DIGITALE LÖSUNGEN FÜR UNABHÄNGIGE KURSANBIETER</p>
-          <h1 data-kinetic>Mehr Leidenschaft. Weniger Management.</h1>
-        </div>
-        <div class="hero__copy" data-reveal-group>
-          <p class="lede" data-reveal>Parvalle entwickelt digitale Lösungen für unabhängige Kursanbieter.</p>
-          <p data-reveal>Kurse direkt über die eigene Website anbieten, buchen und verwalten.</p>
-          <div class="hero__actions" data-reveal>
-            <a class="btn btn--accent" data-magnetic href="produkt.html">Parvalle Course Manager</a>
-            <a class="btn btn--ghost" data-magnetic href="fuer-wen.html">Für wen Parvalle gedacht ist</a>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <section style="padding-top:0">
-      <div class="product-frame" data-reveal>
-        <div class="frame__bar"><div class="frame__dots"><i class="frame__dot"></i><i class="frame__dot"></i><i class="frame__dot"></i></div><div class="frame__title">Übersicht · Heute</div></div>
-        <div class="frame__body">
-          <div class="frame__side"><span>Übersicht</span><span>Kurse</span><span>Termine</span><span>Anmeldungen</span><span>Teilnehmer</span></div>
-          <div class="frame__main">
-            <div class="metric-grid">
-              <div class="metric"><span>Anmeldungen</span><strong>Heute</strong></div>
-              <div class="metric"><span>Auslastung</span><strong>Im Blick</strong></div>
-              <div class="metric"><span>Termine</span><strong>Kommend</strong></div>
-            </div>
-            <div class="frame__list">
-              <div class="frame__row"><span>Braucht Ihre Aufmerksamkeit</span><div class="bar"><i style="width:62%"></i></div></div>
-              <div class="frame__row"><span>Nächste Termine</span><div class="bar"><i style="width:82%"></i></div></div>
-              <div class="frame__row"><span>Entwicklung</span><div class="bar"><i style="width:48%"></i></div></div>
-            </div>
+        <h1>Mehr Leidenschaft. Weniger Management.</h1>
+        <div class="hero__side">
+          <p class="lead">Parvalle entwickelt digitale Lösungen für unabhängige Kursanbieter.</p>
+          <p>Kurse direkt über die eigene Website anbieten, buchen und verwalten.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="produkt.html">Parvalle Course Manager <span class="btn__arrow" aria-hidden="true">→</span></a>
+            <a class="btn" href="fuer-wen.html">Für wen Parvalle gedacht ist</a>
           </div>
         </div>
       </div>
     </section>
-
-    <section class="statement">
-      <p class="statement__text" data-reveal>Verkaufen. <em>Betreiben.</em> Verstehen.</p>
-    </section>
-
-    <section style="padding-top:0">
-      <div class="triad" data-reveal-group>
-        <article data-reveal><span class="num">01</span><div><h3>Verkaufen</h3><p>Kurse sichtbar machen, Buchungen gewinnen, Plätze füllen, Zahlungen erhalten.</p></div></article>
-        <article data-reveal><span class="num">02</span><div><h3>Betreiben</h3><p>Teilnehmer verwalten, kommunizieren, Wartelisten, Änderungen, Stornos, Rechnungen und wiederkehrende Administration abwickeln.</p></div></article>
-        <article data-reveal><span class="num">03</span><div><h3>Verstehen</h3><p>Erkennen, was im Geschäft passiert und daraus bessere Entscheidungen treffen: Auslastung, Nachfrage, Buchungsvorlauf, gefragte Zeiten, Umsatzentwicklung und Wiederkehrer.</p></div></article>
-      </div>
-    </section>
   </div>
 
-  <section class="strip">
-    <div class="marquee" data-marquee data-speed="48"><div class="marquee__track"><span>Kurse</span><span>·</span><span>Buchungen</span><span>·</span><span>Zahlungen</span><span>·</span><span>Teilnehmer</span><span>·</span><span>Kommunikation</span><span>·</span><span>Buchhaltung</span><span>·</span><span>Verstehen</span><span>·</span></div></div>
-  </section>
-
-  <div class="container">
-    <section class="process">
-      <div class="process__sticky">
-        <p class="eyebrow" data-reveal>EIN ZUSAMMENHÄNGENDER KURSPROZESS</p>
-        <h2 data-reveal>Ein Kursgeschäft braucht nicht für jeden Arbeitsschritt ein neues Werkzeug.</h2>
-      </div>
-      <div class="process__steps" data-reveal-group>
-        <div class="process__step" data-reveal><span>01</span><strong>Interessent</strong></div>
-        <div class="process__step" data-reveal><span>02</span><strong>Kurs</strong></div>
-        <div class="process__step" data-reveal><span>03</span><strong>Buchung</strong></div>
-        <div class="process__step" data-reveal><span>04</span><strong>Zahlung</strong></div>
-        <div class="process__step" data-reveal><span>05</span><strong>Teilnehmer</strong></div>
-        <div class="process__step" data-reveal><span>06</span><strong>Kommunikation</strong></div>
-        <div class="process__step" data-reveal><span>07</span><strong>Durchführung</strong></div>
-        <div class="process__step" data-reveal><span>08</span><strong>Buchhaltung</strong></div>
-        <div class="process__step" data-reveal><span>09</span><strong>Nächste Buchung</strong></div>
-      </div>
-    </section>
-
-    <section class="rule">
-      <div class="cards" data-reveal-group>
-        <a class="card" data-reveal href="produkt.html"><div class="card__top"><span class="card__kicker">KURSE VERKAUFEN</span><span class="card__arrow">↗</span></div><h3>Die eigene Website wird zum Buchungskanal.</h3><p>Kurskatalog, Kursseiten, Termine, Online-Anmeldung, Gruppenbuchungen, Live-Preise und Verfügbarkeiten.</p></a>
-        <a class="card" data-reveal href="produkt.html"><div class="card__top"><span class="card__kicker">BEZAHLT WERDEN</span><span class="card__arrow">↗</span></div><h3>Buchung und Zahlung bleiben ein Prozess.</h3><p>PayPal, Karte, Überweisung, Barzahlung, Anzahlungen, Restbeträge, Fälligkeiten und Zahlungserinnerungen.</p></a>
-        <a class="card" data-reveal href="produkt.html"><div class="card__top"><span class="card__kicker">AUSLASTUNG</span><span class="card__arrow">↗</span></div><h3>Keine Überbuchung. Keine unnötig leeren Plätze.</h3><p>Kapazitäten und Wartelisten sorgen für kontrollierte und möglichst vollständig belegte Kurse.</p></a>
-        <a class="card" data-reveal href="produkt.html"><div class="card__top"><span class="card__kicker">BUCHHALTUNG</span><span class="card__arrow">↗</span></div><h3>Buchung, Zahlung und Buchhaltung bleiben miteinander verbunden.</h3><p>§33, §14, Anzahlungs- und Schlussrechnung, GoBD, DATEV, Steuerberater-CSV und Verfahrensdokumentation.</p></a>
-      </div>
-    </section>
-  </div>
-
-  <section class="dark">
-    <div class="container">
-      <section>
-        <p class="eyebrow" data-reveal>WOFÜR PARVALLE STEHT</p>
-        <p class="quote" data-reveal>Gebaut für Kurse. Nicht für Termine, die zufällig wiederholt werden.</p>
-        <div class="pillars" data-reveal-group>
-          <div class="pill" data-reveal><strong>Eigene Website</strong>Die vorhandene Website bleibt der Mittelpunkt.</div>
-          <div class="pill" data-reveal><strong>Eigene Daten</strong>Daten und Prozesse bleiben unter Kontrolle des Anbieters.</div>
-          <div class="pill" data-reveal><strong>Eigene Kundenbeziehung</strong>Kein Marktplatz zwischen Anbieter und Teilnehmer.</div>
-          <div class="pill" data-reveal><strong>Keine Überbuchung</strong>Platzgrenzen werden strukturell durchgesetzt.</div>
-          <div class="pill" data-reveal><strong>DACH-Fit</strong>Zahlungen, Rechnungen, DATEV und Datenschutz im Kursprozess.</div>
-          <div class="pill" data-reveal><strong>Verlässlichkeit</strong>Buchung, Platz, Geld und Dokumente sind geschäftskritische Zustände.</div>
+  <!-- 01 · Ausgangslage -->
+  <div class="container container--wide">
+    <section class="section ruled">
+      <div class="spread">
+        <div class="spread__aside">
+          <p class="marker">Ein zusammenhängender Kursprozess</p>
         </div>
-      </section>
+        <div class="spread__body">
+          <h2>Ein Kursgeschäft braucht nicht für jeden Arbeitsschritt ein neues Werkzeug.</h2>
+          <p class="muted">Ein Kurs ist kein einzelner Vorgang, sondern eine Kette: von der ersten Anfrage bis zur Buchhaltung und zurück zur nächsten Buchung. Parvalle verbindet diese Schritte, statt sie auf getrennte Systeme zu verteilen.</p>
+
+          <div class="chain" data-chain>
+            <div class="chain__rail" aria-hidden="true"></div>
+            <ol class="chain__list">
+              <li class="chain__step"><span class="chain__n">01</span><span class="chain__name">Interessent</span></li>
+              <li class="chain__step"><span class="chain__n">02</span><span class="chain__name">Kurs</span></li>
+              <li class="chain__step"><span class="chain__n">03</span><span class="chain__name">Buchung</span></li>
+              <li class="chain__step"><span class="chain__n">04</span><span class="chain__name">Platz</span></li>
+              <li class="chain__step"><span class="chain__n">05</span><span class="chain__name">Zahlung</span></li>
+              <li class="chain__step"><span class="chain__n">06</span><span class="chain__name">Teilnehmer</span></li>
+              <li class="chain__step"><span class="chain__n">07</span><span class="chain__name">Kommunikation</span></li>
+              <li class="chain__step"><span class="chain__n">08</span><span class="chain__name">Durchführung</span></li>
+              <li class="chain__step"><span class="chain__n">09</span><span class="chain__name">Änderung / Storno</span></li>
+              <li class="chain__step"><span class="chain__n">10</span><span class="chain__name">Buchhaltung</span></li>
+              <li class="chain__step"><span class="chain__n">11</span><span class="chain__name">Analyse</span></li>
+            </ol>
+            <p class="chain__loop"><span aria-hidden="true">↳</span> Und die nächste Buchung beginnt wieder bei 01.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 02 · Verkaufen. Betreiben. Verstehen. -->
+  <div class="container container--wide">
+    <section class="section section--lg ruled">
+      <div class="statement">
+        <div class="statement__lines">
+          <p class="statement__line statement__line--1">Verkaufen.</p>
+          <p class="statement__line statement__line--2">Betreiben.</p>
+          <p class="statement__line statement__line--3">Verstehen.</p>
+        </div>
+        <div class="triptych">
+          <div class="triptych__item">
+            <h3>Verkaufen</h3>
+            <p>Kurse sichtbar machen, Buchungen gewinnen, Plätze füllen, Zahlungen erhalten.</p>
+          </div>
+          <div class="triptych__item">
+            <h3>Betreiben</h3>
+            <p>Teilnehmer verwalten, kommunizieren, Wartelisten, Änderungen, Stornos, Rechnungen und wiederkehrende Administration abwickeln.</p>
+          </div>
+          <div class="triptych__item">
+            <h3>Verstehen</h3>
+            <p>Erkennen, was im Geschäft passiert und daraus bessere Entscheidungen treffen: Auslastung, Nachfrage, Buchungsvorlauf, gefragte Zeiten, Umsatzentwicklung und Wiederkehrer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 03 · Was das im Betrieb bedeutet -->
+  <div class="container container--wide">
+    <section class="section ruled">
+      <div class="spread">
+        <div class="spread__aside">
+          <p class="marker">Im Betrieb</p>
+        </div>
+        <div class="spread__body">
+          <h2>Vier Arbeitsbereiche, die zusammenhängen.</h2>
+          <div class="ledger">
+            <a class="ledger__row" href="produkt.html">
+              <span>
+                <span class="ledger__title">Die eigene Website wird zum Buchungskanal. <span class="ledger__go">Kurse verkaufen</span></span>
+                <span class="ledger__body">Kurskatalog, Kursseiten, Termine, Online-Anmeldung, Gruppenbuchungen, Live-Preise und Verfügbarkeiten.</span>
+              </span>
+            </a>
+            <a class="ledger__row" href="produkt.html">
+              <span>
+                <span class="ledger__title">Buchung und Zahlung bleiben ein Prozess. <span class="ledger__go">Bezahlt werden</span></span>
+                <span class="ledger__body">PayPal, Karte, Überweisung, Barzahlung, Anzahlungen, Restbeträge, Fälligkeiten und Zahlungserinnerungen.</span>
+              </span>
+            </a>
+            <a class="ledger__row" href="produkt.html">
+              <span>
+                <span class="ledger__title">Keine Überbuchung. Keine unnötig leeren Plätze. <span class="ledger__go">Auslastung</span></span>
+                <span class="ledger__body">Kapazitäten und Wartelisten sorgen für kontrollierte und möglichst vollständig belegte Kurse.</span>
+              </span>
+            </a>
+            <a class="ledger__row" href="produkt.html">
+              <span>
+                <span class="ledger__title">Buchung, Zahlung und Buchhaltung bleiben miteinander verbunden. <span class="ledger__go">Buchhaltung</span></span>
+                <span class="ledger__body">§33, §14, Anzahlungs- und Schlussrechnung, GoBD, DATEV, Steuerberater-CSV und Verfahrensdokumentation.</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 04 · Wofür Parvalle steht (Vertrauen) -->
+  <section class="section section--lg on-ink">
+    <div class="container container--wide">
+      <div class="spread">
+        <div class="spread__aside">
+          <p class="marker">Wofür Parvalle steht</p>
+        </div>
+        <div class="spread__body">
+          <h2 class="pull">Gebaut für Kurse. Nicht für Termine, die zufällig wiederholt werden.</h2>
+          <div class="commitments">
+            <div class="commitment">
+              <h3>Eigene Website</h3>
+              <p>Die vorhandene Website bleibt der Mittelpunkt.</p>
+            </div>
+            <div class="commitment">
+              <h3>Eigene Daten</h3>
+              <p>Daten und Prozesse bleiben unter Kontrolle des Anbieters.</p>
+            </div>
+            <div class="commitment">
+              <h3>Eigene Kundenbeziehung</h3>
+              <p>Kein Marktplatz zwischen Anbieter und Teilnehmer.</p>
+            </div>
+            <div class="commitment">
+              <h3>Keine Überbuchung</h3>
+              <p>Platzgrenzen werden strukturell durchgesetzt.</p>
+            </div>
+            <div class="commitment">
+              <h3>DACH-Fit</h3>
+              <p>Zahlungen, Rechnungen, DATEV und Datenschutz im Kursprozess.</p>
+            </div>
+            <div class="commitment">
+              <h3>Verlässlichkeit</h3>
+              <p>Buchung, Platz, Geld und Dokumente sind geschäftskritische Zustände.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div class="container"><section class="cta"><div class="cta__box" data-reveal><div><p class="eyebrow" style="color:rgba(255,255,255,.7)">PARVALLE COURSE MANAGER</p><h2>Mit dem ersten echten Kurs starten.</h2></div><a class="btn" data-magnetic href="produkt.html">Produkt ansehen</a></div></section></div>
+  <!-- Closing -->
+  <div class="container container--wide">
+    <section class="closing">
+      <div class="closing__grid">
+        <h2>Mit dem ersten echten Kurs starten.</h2>
+        <div class="closing__aside">
+          <p class="muted">Parvalle Course Manager macht aus einer WordPress-Website ein vollständiges Buchungs- und Back-Office-System.</p>
+          <a class="btn btn--primary" href="produkt.html">Produkt ansehen <span class="btn__arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </div>
+
 </main>
-<footer class="footer"><div class="container footer__grid"><div><a class="brand" href="index.html">PARVALLE</a><div class="footer__links" style="margin-top:1rem"><a href="produkt.html">Produkt</a><a href="fuer-wen.html">Für wen</a><a href="free-pro.html">Free & Pro</a><a href="ueber-parvalle.html">Über Parvalle</a></div></div><p class="footer__meta">Parvalle · 2026<br>Mehr Leidenschaft. Weniger Management.</p></div></footer>
-<script src="assets/motion.js"></script>
-</body></html>
+
+<footer class="footer">
+  <div class="container container--wide footer__grid">
+    <div>
+      <a class="wordmark" href="index.html">Parvalle</a>
+      <nav class="footer__nav" aria-label="Fußzeile">
+        <a href="produkt.html">Produkt</a>
+        <a href="fuer-wen.html">Für wen</a>
+        <a href="free-pro.html">Free &amp; Pro</a>
+        <a href="ueber-parvalle.html">Über Parvalle</a>
+      </nav>
+    </div>
+    <p class="footer__meta"><strong>Mehr Leidenschaft. Weniger Management.</strong>Parvalle · 2026</p>
+  </div>
+</footer>
+
+<script src="assets/motion.js" defer></script>
+</body>
+</html>

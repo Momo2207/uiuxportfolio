@@ -1,29 +1,99 @@
-(function(){
+/* PARVALLE — progressive enhancement only.
+ *
+ * Everything on this site is visible, readable and navigable before this file
+ * runs. Nothing here reveals content; JavaScript is never a precondition for
+ * reading the page. Two jobs only:
+ *   1. the operating-chain rail, the site's single authored motion
+ *   2. mobile menu housekeeping (the <details> element does the actual work)
+ */
+(function () {
   "use strict";
-  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function reveals(){
-    const items=document.querySelectorAll("[data-reveal]");
-    document.querySelectorAll("[data-reveal-group]").forEach(group=>{
-      const children=group.querySelectorAll(":scope [data-reveal]");
-      children.forEach((child,i)=>child.style.setProperty("--reveal-delay",`${i*72}ms`));
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  /* ---- 1. The operating chain fills as it is read ---------------------- */
+  function chain() {
+    var chainEl = document.querySelector("[data-chain]");
+    if (!chainEl) return;
+
+    var rail = chainEl.querySelector(".chain__rail");
+    var steps = Array.prototype.slice.call(chainEl.querySelectorAll(".chain__step"));
+    if (!rail || !steps.length) return;
+
+    // Reduced motion: show the chain complete and stop. State, not travel.
+    if (reduceMotion.matches) {
+      rail.style.setProperty("--fill", "100%");
+      steps.forEach(function (s) { s.classList.add("is-passed"); });
+      return;
+    }
+
+    var ticking = false;
+
+    function update() {
+      ticking = false;
+      var rect = chainEl.getBoundingClientRect();
+      var anchor = window.innerHeight * 0.62;           // the reading line
+      var progress = (anchor - rect.top) / rect.height;
+      progress = Math.max(0, Math.min(1, progress));
+      rail.style.setProperty("--fill", (progress * 100).toFixed(2) + "%");
+
+      var mark = rect.top + rect.height * progress;
+      steps.forEach(function (step) {
+        var r = step.getBoundingClientRect();
+        step.classList.toggle("is-passed", r.top + r.height / 2 <= mark + 1);
+      });
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    reduceMotion.addEventListener("change", function () {
+      window.removeEventListener("scroll", onScroll);
+      chain();
     });
-    if(reduce||!("IntersectionObserver" in window)){items.forEach(el=>el.classList.add("is-in"));return;}
-    const io=new IntersectionObserver((entries,obs)=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("is-in");obs.unobserve(e.target)}}),{rootMargin:"0px 0px -10% 0px",threshold:.12});
-    items.forEach(el=>io.observe(el));
+    update();
   }
-  function kinetic(){
-    document.querySelectorAll("[data-kinetic]").forEach(el=>{
-      const words=el.textContent.trim().split(/\s+/); el.textContent="";
-      words.forEach((word,i)=>{const outer=document.createElement("span");outer.className="word";const inner=document.createElement("span");inner.textContent=word;inner.style.setProperty("--i",i);outer.appendChild(inner);el.appendChild(outer);el.appendChild(document.createTextNode(" "));});
-      requestAnimationFrame(()=>el.classList.add("is-in"));
+
+  /* ---- 2. Mobile menu housekeeping ------------------------------------ */
+  function menu() {
+    var menuEl = document.querySelector("[data-menu]");
+    if (!menuEl) return;
+
+    function close() {
+      if (menuEl.open) menuEl.removeAttribute("open");
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && menuEl.open) {
+        close();
+        var summary = menuEl.querySelector("summary");
+        if (summary) summary.focus();
+      }
+    });
+
+    document.addEventListener("click", function (e) {
+      if (menuEl.open && !menuEl.contains(e.target)) close();
+    });
+
+    menuEl.addEventListener("click", function (e) {
+      if (e.target.closest(".menu__panel a")) close();
+    });
+
+    window.matchMedia("(min-width: 901px)").addEventListener("change", function (e) {
+      if (e.matches) close();
     });
   }
-  function marquee(){
-    document.querySelectorAll("[data-marquee]").forEach(m=>{const track=m.querySelector(".marquee__track");if(!track)return;track.innerHTML+=track.innerHTML;if(reduce)return;const speed=parseFloat(m.dataset.speed)||45;const set=()=>{const dist=track.scrollWidth/2;m.style.setProperty("--marquee-dur",`${dist/speed}s`)};set();window.addEventListener("resize",set,{passive:true});});
+
+  function init() { chain(); menu(); }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
   }
-  function magnetic(){
-    if(reduce||window.matchMedia("(pointer: coarse)").matches)return;
-    document.querySelectorAll("[data-magnetic]").forEach(el=>{el.addEventListener("pointermove",e=>{const r=el.getBoundingClientRect();const x=(e.clientX-(r.left+r.width/2))*.1;const y=(e.clientY-(r.top+r.height/2))*.1;el.style.transform=`translate(${x}px,${y}px)`});el.addEventListener("pointerleave",()=>{el.style.transform=""})});
-  }
-  document.addEventListener("DOMContentLoaded",()=>{kinetic();reveals();marquee();magnetic();});
 })();
